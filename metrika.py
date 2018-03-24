@@ -1,6 +1,4 @@
 import requests
-from pprint import pprint
-from urllib.parse import urlencode
 
 APP_ID = "ffbbbf50349745ce9d0db0f53a9dedf6"
 AUTH_URL = "https://oauth.yandex.ru/authorize"
