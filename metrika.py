@@ -5,55 +5,6 @@ from urllib.parse import urlencode
 APP_ID = "ffbbbf50349745ce9d0db0f53a9dedf6"
 AUTH_URL = "https://oauth.yandex.ru/authorize"
 
-# auth_data = {
-#     'response_type': 'token',
-#     'client_id': APP_ID
-# }
-#
-# print('?'.join((AUTH_URL, urlencode(auth_data))))
-#
-# first_user = {
-#     'visits': None,
-#     'token': "AQAAAAAiETCRAAToqTLcxJeanUjBu1-O88tzcc8"
-# }
-#
-# TOKEN = "AQAAAAAiETCRAAToqTLcxJeanUjBu1-O88tzcc8"
-# SECOND_TOKEN = "second_token"
-#
-# params = {
-#     "oauth_token": first_user['token'],
-#     "pretty": 1
-# }
-#
-# response = requests.get("https://api-metrika.yandex.ru/management/v1/counters", params)
-# counter_id = response.json()["counters"][0]["id"]
-#
-#
-# params = {
-#     "id": counter_id,
-#     "metrics": "ym:s:visits"
-# }
-# headers = {
-#     "Authorization": "OAuth {}".format(first_user['token'])
-# }
-#
-#
-#
-# def get_visits(token, counter_id):
-#     params = {
-#         "id": counter_id,
-#         "metrics": "ym:s:visits"
-#     }
-#     headers = {
-#         "Authorization": "OAuth {}".format(first_user['token'])
-#     }
-#     response = requests.get("https://api-metrika.yandex.ru/stat/v1/data", params, headers=headers)
-#     return response.json()['totals'][0]
-#
-# first_user['visits'] = get_visits(first_user['token'], counter_id)
-# pprint(first_user)
-
-
 class YaBase:
     def __init__(self, token):
         self.token = token
