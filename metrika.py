@@ -37,11 +37,40 @@ class Counter(YaBase):
 
         response = requests.get("https://api-metrika.yandex.ru/stat/v1/data", params, headers=headers)
         try:
-            return response.json()['totals']              #['visits'][0]['metrics'][0]?
+            return response.json()['data'][0]['metrics'][0]
         except IndexError as e:
             return e
+
+    @property
+    def pageviews(self):
+        headers = self.get_headers()
+        params = {
+            "id": self.counter_id,
+            "metrics": "ym:s:pageviews"
+        }
+
+        response = requests.get("https://api-metrika.yandex.ru/stat/v1/data", params, headers=headers)
+        try:
+            return response.json()['data'][0]['metrics'][0]
+        except IndexError as e:
+            return e
+
+    @property
+    def users(self):
+        headers = self.get_headers()
+        params = {
+            "id": self.counter_id,
+            "metrics": "ym:s:users"
+        }
+
+        response = requests.get("https://api-metrika.yandex.ru/stat/v1/data", params, headers=headers)
+        try:
+            return response.json()['data'][0]['metrics'][0]
+        except IndexError as e:
+            return e
+
 
 first_user = YaMetricaUser("AQAAAAAiETCRAAToqTLcxJeanUjBu1-O88tzcc8")
 counters = first_user.get_counter()
 for counter in counters:
-    print(counter.counter_id, ":", counter.visits)
+    print(counter.counter_id, ":", f'Visits: {counter.visits}, Pageviews: {counter.pageviews}, Users: {counter.users}')
